@@ -132,7 +132,7 @@ function Shell({children}:{children:ReactNode}) {
       <div className="sidebar-middle">
         <div className="sidebar-label">WORKSPACE</div>
         <nav className="side-nav">
-          {navItems.map(({to,label,icon:Icon}) => <NavLink key={to} to={to} end={to==="/"} className={({isActive})=>"side-link"+(isActive?" selected":"")}>
+          {navItems.map(({to,label,icon:Icon}) => <NavLink key={to} to={to} end={to==="/"} aria-label={label} title={label} className={({isActive})=>"side-link"+(isActive?" selected":"")}>
             <Icon size={19} strokeWidth={1.8}/><span>{label}</span>
             {to==="/kitchen" && activeCount>0 && <small className="nav-count">{activeCount}</small>}
           </NavLink>)}
