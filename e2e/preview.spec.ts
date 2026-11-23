@@ -24,6 +24,7 @@ test("J1+J2 register to kitchen journey preserves cart and matches sample receip
   if(testInfo.project.name==="390x844") await page.getByRole("button",{name:/View cart/}).click();
   await expect(page.getByText("Honey Oat Latte").last()).toBeVisible();
   await expect(page.getByText("Butter Croissant").last()).toBeVisible();
+  await page.screenshot({path:"test-results/evidence-pos-"+testInfo.project.name+".png"});
   await page.getByRole("spinbutton",{name:"Cash given"}).fill("1000");
   await page.getByRole("button",{name:"Complete sample sale"}).click();
 
@@ -44,12 +45,13 @@ test("J1+J2 register to kitchen journey preserves cart and matches sample receip
   await expect(ticket).toContainText("Preparing");
   await ticket.getByRole("button",{name:"Mark ready"}).click();
   await expect(ticket).toContainText("Ready");
-  await page.screenshot({path:"test-results/evidence-"+testInfo.project.name+".png",fullPage:true});
+  await page.screenshot({path:"test-results/evidence-kitchen-"+testInfo.project.name+".png"});
   expect(errors).toEqual([]);
 });
 
-test("J1 scenario reset, empty state, keyboard focus and dark appearance",async({page})=>{
+test("J1 scenario reset, empty state, keyboard focus and dark appearance",async({page},testInfo)=>{
   await page.goto("/");
+  await page.screenshot({path:"test-results/evidence-overview-"+testInfo.project.name+".png"});
   await page.getByRole("combobox",{name:"Sample situation"}).selectOption("New store");
   await page.getByRole("link",{name:"Orders",exact:true}).click();
   await expect(page.getByText("Nothing here yet")).toBeVisible();
