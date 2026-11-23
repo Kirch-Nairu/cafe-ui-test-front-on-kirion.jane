@@ -1,37 +1,50 @@
-# Salryn Cafe — Jane Frontend Trial
+# Salryn Cafe · Independent Frontend Preview
 
-**Status:** BOOTSTRAP ONLY — the frontend has not been implemented or browser-tested.
+Original, public-safe **React 19 + TypeScript + Vite** Cafe frontend design trial for Kirion-Jane. This repository contains no production Cafe source, database, backend services, customer records, passwords, private skill files, or restricted brand assets. It is not a deployable POS or fiscal system.
 
-**Purpose:** A clean-room, independent frontend design and interaction trial. This **public** repository is the destination for Kirion-Jane's alternative Cafe UI, separate from the existing ISO frontend and the production/backend repositories.
+**Visible throughout the app:** Design Preview — Sample Data Only
 
-## Engineering target
+## Start
 
-Build a usable, responsive React + TypeScript + Vite **design-preview** experience for cafe operators, including a coherent shell and working POS → Orders → Kitchen workflow first, then broader menu, recipes, inventory, payments/shift, bookings, staff, reporting and administration screens.
+Requires Node.js 22 or newer and npm.
 
-Use realistic **synthetic** sample data and clearly label every simulated workflow **“Design Preview — Sample Data Only”**. No actual orders, financial records, licenses, backups, or customer information may be modified. Existing backend/business rules must be consulted through authorized **read-only** access; do not infer that this public repository contains their source.
+1. Run `npm ci` (dependencies are pinned in the committed `package-lock.json`).
+2. Run `npm run dev`.
+3. Open the URL printed by Vite (expected default: `http://localhost:5173`; verify locally).
+4. Change sample situations from the top toolbar and use the menu, cart, orders and kitchen screens.
 
-### Security and publication limits
+## Checks
 
-- This repository is **public**. Do **not** copy files, assets, customer data, credentials, internal reports, or other restricted content from private repositories unless separately authorized for public release.
-- Do not copy Antigravity's frontend implementation. Independent implementation and reproducible comparison are required.
-- Do not modify the actual Cafe Host, databases, Central server, Android, installer, or production environment.
-- Preview interaction is not live backend acceptance; label evidence accordingly.
+- `npm run typecheck` — strict TypeScript checking.
+- `npm test` — pure domain tests with Node 22's TypeScript stripping, no browser.
+- `npm run build` — TypeScript and Vite production bundle.
+- `npx playwright install chromium` — install test browser when needed.
+- `npm run test:e2e` — real browser journeys at 1366×768, 1024×768 and 390×844.
+- A PR workflow uses the pinned npm lockfile, checks code and runs the browser scenarios, retaining browser screenshots and trace evidence.
 
-## Implementation path
+## Current checkpoint: J1 + J2
 
-1. Scaffold a new React + TypeScript + Vite project **in this repository**. Do not import a private repository history.
-2. Build the shared Cafe shell with original visual design and accessible desktop/tablet/mobile navigation.
-3. Implement a coherent POS → Orders → Kitchen flow with synthetic state, modifiers, a preserved cart, order progression, and preview receipts.
-4. Implement additional Cafe operator capabilities according to actual backend-supported contracts (verified privately).
-5. Run the app in a real browser at **1366×768**, **1024×768**, and **390×844**. Record screenshots and verify primary interactions.
-6. Run and record actual typechecking, tests, and build results. Never claim success for checks not run.
+- Responsive app shell, route navigation and both appearance modes.
+- Operator context and resettable sample situations.
+- Searchable menu and categories; sizes and priced modifiers.
+- Cart quantity controls and preservation across route navigation.
+- Simulated cash checkout with a synchronous repeated-submit guard.
+- Preview receipt reflecting the exact cart and tender change.
+- Orders listing and detail drawer.
+- Kitchen tickets and New → Preparing → Ready → Completed workflow.
+- Manila time, PHP formatting, native dialogs and keyboard controls.
+- No backend or network services are accessed for business operations.
 
-## Collaboration and review
+### Try a complete sample journey
 
-Kirion-Jane currently has **read-only** access to this repository. Until the owner grants write access and Jane accepts, Jane should fork this public repository, implement the trial in her own fork, and open a **draft pull request** targeting this repository's `main`. Do not publish using someone else's credentials or imply Jane has push access.
+Visit Register → customize a Honey Oat Latte (Large, Oat milk, Vanilla) → add a Butter Croissant → visit Orders → Kitchen → return to Register → check that the cart still contains both items → enter cash given of ₱1,000 → complete the **sample** checkout → verify the sample total (₱380) and change (₱620) → check Orders and Kitchen for the new ticket. No real records change.
 
-The code writer provides tested candidate changes and evidence; the owner performs acceptance. No autonomous merge or production integration.
+### Preview limitations and next bounded slices
 
-## Current files
+These are intentionally **in-memory** sample business records: refreshing the browser starts a new preview, and no sample payments or stock movements are persisted. Only the visual appearance preference uses localStorage. Role selection is illustrative and is **not** actual authorization; when integrating a real backend, all permission-gated actions must come from server-provided capabilities. Sample receipts are visibly **not tax receipts**. Do not treat sample checkout success as proof of real payment safety.
 
-This README initializes the empty repository for the independent trial. **No working frontend has been delivered yet.** The implementation task is tracked in GitHub Issues.
+Pending J3–J7: menu authoring, ingredients/recipes/stock, sales/shifts/refunds/receivables, delivery/bookings/events/staff/printing, reporting/administration, and independent contract plus cross-browser acceptance. No production integration or merge is authorized.
+
+## Mission
+
+Tracked at [Issue #1](https://github.com/Kirch-Nairu/cafe-ui-test-front-on-kirion.jane/issues/1). Source is newly implemented for the public trial. Private reference repositories and the supplied private skill ZIP are not copied here.
