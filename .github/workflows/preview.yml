@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: '22'
       - name: Install packages
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
       - name: Type check
         run: npm run typecheck
       - name: Domain tests
@@ -33,11 +33,4 @@ jobs:
           path: |
             test-results/
             playwright-report/
-          if-no-files-found: ignore
-      - name: Retain generated dependency lock
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: jane-cafe-package-lock
-          path: package-lock.json
           if-no-files-found: ignore

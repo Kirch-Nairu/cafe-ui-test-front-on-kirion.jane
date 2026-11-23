@@ -457,6 +457,8 @@ function Kitchen() {
 }
 function App() {
   const navigate=useNavigate();
+  const location=useLocation();
+  useEffect(()=>{window.scrollTo(0,0);},[location.pathname]);
   useEffect(()=>{const key=(e:KeyboardEvent)=>{if(e.altKey&&e.key==="1")navigate("/pos");if(e.altKey&&e.key==="2")navigate("/orders");if(e.altKey&&e.key==="3")navigate("/kitchen");};window.addEventListener("keydown",key);return()=>window.removeEventListener("keydown",key);},[navigate]);
   return <Shell><Routes><Route path="/" element={<Overview/>}/><Route path="/pos" element={<POS/>}/><Route path="/orders" element={<Orders/>}/><Route path="/kitchen" element={<Kitchen/>}/><Route path="*" element={<Navigate to="/" replace/>}/></Routes></Shell>;
 }

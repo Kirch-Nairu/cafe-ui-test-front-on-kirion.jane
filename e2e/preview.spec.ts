@@ -19,6 +19,7 @@ test("J1+J2 register to kitchen journey preserves cart and matches sample receip
   await expect(page.getByRole("heading",{name:"Every order, on track."})).toBeVisible();
   await page.getByRole("link",{name:/^Kitchen(?: display)?$/}).click();
   await expect(page.getByRole("heading",{name:"Made with care. Sent with speed."})).toBeVisible();
+  await expect.poll(()=>page.evaluate(()=>window.scrollY)).toBe(0);
   await page.getByRole("link",{name:/^(Point of sale|Register)$/}).click();
 
   if(testInfo.project.name==="390x844") await page.getByRole("button",{name:/View cart/}).click();

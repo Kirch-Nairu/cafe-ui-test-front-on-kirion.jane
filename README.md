@@ -8,7 +8,7 @@ Original, public-safe **React 19 + TypeScript + Vite** Cafe frontend design tria
 
 Requires Node.js 22 or newer and npm.
 
-1. Run `npm install` (the review branch is not yet dependency-locked).
+1. Run `npm ci` (dependencies are pinned in the committed `package-lock.json`).
 2. Run `npm run dev`.
 3. Open the URL printed by Vite (expected default: `http://localhost:5173`; verify locally).
 4. Change sample situations from the top toolbar and use the menu, cart, orders and kitchen screens.
@@ -20,7 +20,7 @@ Requires Node.js 22 or newer and npm.
 - `npm run build` — TypeScript and Vite production bundle.
 - `npx playwright install chromium` — install test browser when needed.
 - `npm run test:e2e` — real browser journeys at 1366×768, 1024×768 and 390×844.
-- A PR workflow installs packages, checks code and runs the browser scenarios, retaining screenshots and a generated dependency lock artifact.
+- A PR workflow uses the pinned npm lockfile, checks code and runs the browser scenarios, retaining browser screenshots and trace evidence.
 
 ## Current checkpoint: J1 + J2
 
